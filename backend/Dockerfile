@@ -24,6 +24,7 @@ RUN composer dump-autoload
 # Устанавливаем права для Laravel
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 # Открываем порт для PHP-FPM
-EXPOSE 9000
+ENV PORT=8080
+EXPOSE 8080
 # Запускаем PHP-FPM
 CMD ["php-fpm"]

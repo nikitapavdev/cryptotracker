@@ -9,6 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копируем код сервиса
 COPY . .
 # Открываем порт для FastAPI
-EXPOSE 8000
+ENV PORT=8080
+EXPOSE 8080
 # Запускаем Uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

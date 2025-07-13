@@ -9,6 +9,7 @@ RUN npm install
 # Копируем код приложения
 COPY . .
 # Открываем порт для Express.js и WebSocket
-EXPOSE 3000
+ENV PORT=8080
+EXPOSE 8080
 # Запускаем сервер Express.js
 CMD ["node", "index.js"]

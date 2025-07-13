@@ -17,7 +17,9 @@ FROM nginx:alpine
 COPY --from=builder /app/build /usr/share/nginx/html
 # Копируем конфигурацию Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+ENV PORT=8080
 # Открываем порт 80
-EXPOSE 80
+EXPOSE 8080
 # Запускаем Nginx
 CMD ["nginx", "-g", "daemon off;"]
