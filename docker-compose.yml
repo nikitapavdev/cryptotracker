@@ -7,7 +7,7 @@ services:
       - "80:80"
     depends_on:
       - backend
-      - node-service
+      - apigateway
     networks:
       - app-network
 
@@ -29,7 +29,7 @@ services:
     networks:
       - app-network
 
-  node-service:
+  apigateway:
     build:
       context: ./apigateway
       dockerfile: Dockerfile
@@ -43,7 +43,7 @@ services:
     networks:
       - app-network
 
-  fastapi-service:
+  analysis:
     build:
       context: ./analysis
       dockerfile: Dockerfile

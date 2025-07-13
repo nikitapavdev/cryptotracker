@@ -34,12 +34,12 @@ jobs:
 
       - name: Build and push node-service
         run: |
-          docker build -t nikitapavdev/cryptotracker:apigateway-${{ github.run_number }} ./node-service
+          docker build -t nikitapavdev/cryptotracker:apigateway-${{ github.run_number }} ./apigateway
           docker push nikitapavdev/cryptotracker:apigateway-${{ github.run_number }}
 
       - name: Build and push fastapi-service
         run: |
-          docker build -t nikitapavdev/cryptotracker:analysis-${{ github.run_number }} ./fastapi-service
+          docker build -t nikitapavdev/cryptotracker:analysis-${{ github.run_number }} ./analysis
           docker push nikitapavdev/cryptotracker:analysis-${{ github.run_number }}
 
       - name: Trigger Render deploy
