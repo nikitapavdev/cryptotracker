@@ -27,4 +27,4 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 ENV PORT=8080
 EXPOSE 8080
 # Запускаем PHP-FPM
-CMD ["php-fpm"]
+CMD ["sh", "-c", "if [ -f /secrets/.env ]; then cp /secrets/.env /var/www/.env; fi && php-fpm"]
