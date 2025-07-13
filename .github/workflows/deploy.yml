@@ -14,20 +14,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup SSH key and known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.GCP_DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 34.56.114.159 >> ~/.ssh/known_hosts
+
       - name: Deploy via SSH
         run: |
           ssh -i ~/.ssh/id_rsa github-to-gcp@34.56.114.159 << 'EOF'
-          cd /home/github-to-gcp/cryptotracker
-          git pull origin main
-          docker compose pull
-          docker compose up -d --build
-        EOF
- 
-      - name: Deploy via SSH
-        run: |
-          sudo ssh -i ~/.ssh/id_rsa github-to-gcp@34.56.114.159 << 'EOF'
             cd /home/github-to-gcp/cryptotracker
             git pull origin main
             docker compose pull
             docker compose up -d --build
           EOF
+
