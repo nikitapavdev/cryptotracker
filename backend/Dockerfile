@@ -5,7 +5,7 @@ WORKDIR /var/www
 # Устанавливаем зависимости для Laravel
 RUN apt-get update && apt-get install -y \
     libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql
+    && docker-php-ext-install pdo_pgsql
 # Устанавливаем Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 # Копируем composer.json и composer.lock
