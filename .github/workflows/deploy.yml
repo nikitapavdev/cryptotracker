@@ -24,12 +24,8 @@ jobs:
       - name: Deploy via SSH
         run: |
           ssh -v -i ~/.ssh/id_rsa github-to-gcp@34.56.114.159 << 'EOF'
-            cd /home/github-to-gcp/docvault
+            cd /home/github-to-gcp/cryptotracker
             git pull origin main
             docker-compose pull
-            cd backend
-            composer install
-            cd ../
-            docker-compose up -d --build
+            docker-compose -f docker-compose.yml up -d --build
           EOF
-

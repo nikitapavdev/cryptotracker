@@ -16,11 +16,11 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 # Устанавливаем зависимости Composer
-RUN composer install --no-dev --optimize-autoloader
-# Генерируем автозагрузчик Composer
-RUN composer dump-autoload
+RUN composer install --no-scripts --no-autoloader
 # Копируем код Laravel
 COPY . .
+# Генерируем автозагрузчик Composer
+RUN composer dump-autoload
 # Устанавливаем права для Laravel
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 # Открываем порт для PHP-FPM
