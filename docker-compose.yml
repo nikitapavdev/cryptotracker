@@ -7,7 +7,6 @@ services:
       - "80:8080"
     depends_on:
       - backend
-      - apigateway
     networks:
       - app-network
 
@@ -24,6 +23,7 @@ services:
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
     depends_on:
+      - uploadservice
       - postgres
       - redis
     networks:
