@@ -1,4 +1,5 @@
-# DocVault is a web application for secure document storage, management, and sharing with access control, versioning, and analytics. It enables users to upload files, generate temporary sharing links, and track download activity while ensuring high security standards and GDPR compliance.
+# DocVault 
+is a web application for secure document storage, management, and sharing with access control, versioning, and analytics. It enables users to upload files, generate temporary sharing links, and track download activity while ensuring high security standards and GDPR compliance.
 
 ## Technology Stack
 
