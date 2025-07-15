@@ -1,9 +1,8 @@
-# Crypto portfolio Tracker
-Crypto Portfolio Tracker is a web application for tracking cryptocurrency information and analyzing market trends. It enables users to monitor their investments, receive up-to-date price data, and analyze real-time market movements.
+# DocVault is a web application for secure document storage, management, and sharing with access control, versioning, and analytics. It enables users to upload files, generate temporary sharing links, and track download activity while ensuring high security standards and GDPR compliance.
 
 ## Technology Stack
 
-    Frontend: React, Nginx
+    Frontend: React, Tailwind CSS
 
     Backend: Laravel (PHP), Express.js (Node.js), FastAPI (Python)
 
@@ -11,8 +10,10 @@ Crypto Portfolio Tracker is a web application for tracking cryptocurrency inform
 
     Caching: Redis
 
+    Object Storage: Amazon S3 (or MinIO for local development)
+
     Containerization: Docker, Docker Compose
 
     CI/CD: GitHub Actions
 
-    Cloud Hosting: Google Cloud Platform (Compute Engine / Cloud Run)
+    Cloud Hosting: AWS (EC2 / S3) or equivalent provider
