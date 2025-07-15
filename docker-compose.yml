@@ -29,9 +29,9 @@ services:
     networks:
       - app-network
 
-  apigateway:
+  uploadservice:
     build:
-      context: ./apigateway
+      context: ./uploadservice
       dockerfile: Dockerfile
     environment:
       - REDIS_HOST=redis
@@ -65,6 +65,8 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
     networks:
       - app-network
 
