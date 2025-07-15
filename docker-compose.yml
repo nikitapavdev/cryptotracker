@@ -28,6 +28,8 @@ services:
       - redis
     networks:
       - app-network
+    volumes:
+      - ./backend:/var/www
 
   uploadservice:
     build:
