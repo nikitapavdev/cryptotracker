@@ -27,6 +27,9 @@ jobs:
             cd /home/github-to-gcp/cryptotracker
             git pull origin main
             docker-compose pull
+            cd backend
+            composer install
+            cd ../
             docker-compose up -d --build
           EOF
 
