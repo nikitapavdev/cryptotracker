@@ -21,6 +21,9 @@ return new class extends Migration
             // Original file name (as uploaded by the user)
             $table->string('original_name');
 
+            // Custom file name (users can set this)
+            $table->string('custom_name')->nullable();
+
             // Unique key used to locate the file in S3
             $table->string('s3_key')->unique();
 
