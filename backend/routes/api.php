@@ -8,11 +8,16 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/files/{file}/download', [FileController::class, 'download']);
-    Route::post('/files/upload-url', [FileController::class, 'getUploadUrl']);
+/*Route::middleware('auth:sanctum')->group(function () {
 
-    Route::apiResource('files', FileController::class)->only([
-        'index', 'store', 'show', 'destroy'
-    ]);
-});
+
+
+});*/
+
+Route::get('/files/{file}/download', [FileController::class, 'download']);
+Route::post('/files/upload-url', [FileController::class, 'getUploadUrl']);
+
+Route::apiResource('files', FileController::class)->only([
+    'index', 'store', 'show', 'destroy'
+]);
+
