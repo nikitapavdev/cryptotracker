@@ -18,6 +18,6 @@ Route::get('/files/{file}/download', [FileController::class, 'download']);
 Route::post('/files/upload-url', [FileController::class, 'getUploadUrl']);
 
 Route::apiResource('files', FileController::class)->only([
-    'index', 'store', 'show', 'destroy'
+    'index', 'store', 'show', 'update', 'destroy'
 ]);
 
