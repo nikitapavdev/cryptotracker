@@ -22,29 +22,6 @@ class FileController extends Controller
     }
     public function index()
     {
-
-        // Array of all files of the user
-        /*$files = [];
-
-        foreach(File::where('user_id', Auth()->id())->get() as $file){
-            
-            $files[] = [
-                'id' => $file->id,
-                'original_name' => $file->original_name,
-                'custom_name' => $file->custom_name,
-                'mime_type' => $file->mime_type,
-                'size' => $file->size,
-                'is_public' => $file->is_public,
-                'scanned_status' => $file->scanned_status,
-                'scanned_at' => $file->scanned_at,
-                'created_at' => $file->created_at,
-                'updated_at' => $file->updated_at
-            ];
-
-        }
-
-        return response()->json($files);*/
-
         $files = File::where('user_id', Auth()->id())->get();
 
         return FileResource::collection($files);
