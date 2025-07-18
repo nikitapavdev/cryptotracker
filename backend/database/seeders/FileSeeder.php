@@ -14,13 +14,13 @@ class FileSeeder extends Seeder
      */
     public function run(): void
     {
-        // Getting the first user or creating a new one
-        $user = User::first() ?? User::factory()->create();
-
         // Creating 10 files
-        File::factory()
-            ->count(10)
-            ->for($user)
-            ->create();
+        for($i = 0; $i < 50; $i++){
+            File::factory()
+                ->count(2)
+                ->for(User::inRandomOrder()->first())
+                ->create();
+        }
+
     }
 }
