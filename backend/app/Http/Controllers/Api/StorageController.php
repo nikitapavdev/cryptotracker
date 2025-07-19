@@ -28,11 +28,12 @@ class StorageController extends Controller
         $disk = Storage::disk('s3');
 
         $uniqueKey = Str::uuid()->toString();
+        $ext = pathinfo($validated['original_name'], PATHINFO_EXTENSION);
 
         $client = new S3Client([
             'version' => 'latest',
             'region' => config('filesystems.disks.s3.region'),
-            'endpoint' => config('filesystems.disks.s3.endpoint'),
+            'endpoint' => 'http://localhost:9000'/*config('filesystems.disks.s3.endpoint')*/,
             'use_path_style_endpoint' => config('filesystems.disks.s3.use_path_style_endpoint', false),
             'credentials' => [
                 'key' => config('filesystems.disks.s3.key'),
@@ -42,7 +43,7 @@ class StorageController extends Controller
 
         $bucket = config('filesystems.disks.s3.bucket');
         $user_id = Auth::id();
-        $key = "$user_id/$uniqueKey";
+        $key = "$user_id/$uniqueKey.$ext";
 
         $command = $client->getCommand('PutObject', [
             'Bucket' => $bucket,
@@ -57,7 +58,7 @@ class StorageController extends Controller
         return response()->json([
             'upload_url' => $url,
             'file_path' => $key,
-        ]);
+        ], 200);
     }
 
     public function download(Request $request){

@@ -20,6 +20,7 @@ class FileResource extends JsonResource
             'custom_name' => $this->custom_name,
             'mime_type' => $this->mime_type,
             'size' => $this->size,
+            's3_key' => $this->s3_key,
             'is_public' => $this->is_public,
             'scanned_status' => $this->scanned_status,
             'scanned_at' => $this->scanned_at,

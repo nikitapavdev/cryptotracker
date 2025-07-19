@@ -26,6 +26,7 @@ services:
       - uploadservice
       - postgres
       - redis
+      - minio
     networks:
       - app-network
     volumes:
@@ -90,7 +91,7 @@ services:
     networks:
       - app-network
   minio:
-    image: minio/minio
+    image: quay.io/minio/minio:RELEASE.2025-02-03T21-03-04Z
     container_name: minio
     ports:
       - "9000:9000"
@@ -101,6 +102,8 @@ services:
     command: server /data --console-address ":9001"
     volumes:
       - minio-data:/data
+    networks:
+      - app-network
 
 networks:
   app-network:
