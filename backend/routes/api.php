@@ -14,6 +14,7 @@ Route::get('/user', function (Request $request) {
 // Authentification
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(['auth:sanctum']);
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 // Files upload and download
 Route::get('/files/download-url/{id}/{s3_key}', [StorageController::class, 'download']);

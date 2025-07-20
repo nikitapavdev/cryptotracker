@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rules;
+use Illuminate\Http\Request;
 use App\Models\User;
 
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $validated['email'])->first();
 
         if(!$user){
             throw ValidationException::withMessages([
@@ -25,7 +26,7 @@ class AuthController extends Controller
             ]);
         }
 
-        if(Hash::check($request->password, $user->password)){
+        if(!Hash::check($validated['password'], $user->password)){
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.']
             ]);           
@@ -45,5 +46,35 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Logged out successfully'
         ]);
+    }
+
+    public function register(Request $request){
+        if(auth('sanctum')->check()){
+            return response()->json([
+                'message' => "The user is already authenticated"
+            ], 302);
+        }
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => "required|string|email|unique:users,email",
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        // Сразу выдать токен
+        $token = $user->createToken('api-token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Registration successful',
+            'user' => $user,
+            'token' => $token,
+        ]);
+
     }
 }
