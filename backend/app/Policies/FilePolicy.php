@@ -37,7 +37,7 @@ class FilePolicy
      */
     public function update(User $user, File $file): bool
     {
-        return false;
+        return $user->id === $file->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class FilePolicy
      */
     public function delete(User $user, File $file): bool
     {
-        return false;
+        return $user->id === $file->user_id;
     }
 
     /**

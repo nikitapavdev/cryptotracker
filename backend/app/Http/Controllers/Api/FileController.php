@@ -20,11 +20,13 @@ class FileController extends Controller
 
     public function __construct(){
         $this->middleware('auth:sanctum'); 
+        $this->middleware('throttle:60,1')
+                            ->only(['store', 'destroy', 'update']); 
         $this->authorizeResource(File::class, 'file');
     }
-    public function index()
+    public function index(File $file)
     {
-        $files = File::where('user_id', Auth()->id())->get();
+        $files = $file::where('user_id', Auth()->id())->latest()->paginate(20);
 
         return FileResource::collection($files);
     }
@@ -32,7 +34,7 @@ class FileController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, File $file)
     {
         $validated = $request->validate([
             'original_name' => 'required|string',
@@ -54,8 +56,8 @@ class FileController extends Controller
                 'message' => 'File not found in storage'
             ], 404);
         }
-        if(File::where('s3_key', $validated['s3_key'])->first() === null){
-            File::create([
+        if($file::where('s3_key', $validated['s3_key'])->first() === null){
+            $file::create([
                 ...$validated,
                 'user_id' => Auth()->id(),
                 'is_public' => false
@@ -83,16 +85,22 @@ class FileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, File $file)
     {
-        //
+        $file->update($request->validate([
+            'custom_name' => 'sometimes|string',
+        ]));
+        return $file;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(File $file)
     {
-        //
+        $file->delete();
+        return response()->json([
+            'message' => 'the file was successfuly deleted'
+        ]);
     }
 }

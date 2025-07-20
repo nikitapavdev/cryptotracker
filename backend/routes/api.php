@@ -20,7 +20,4 @@ Route::get('/files/download-url/{id}/{s3_key}', [StorageController::class, 'down
 Route::post('/files/upload-url', [StorageController::class, 'getUploadUrl']);
 
 // Resource paths
-Route::apiResource('files', FileController::class)->only([
-    'index', 'store', 'show', 'update', 'destroy'
-]);
-
+Route::apiResource('files', FileController::class);
