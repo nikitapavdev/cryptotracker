@@ -3,10 +3,6 @@ FROM php:8.3-fpm
 # Устанавливаем рабочую директорию
 WORKDIR /var/www
 
-COPY cacert.pem /usr/local/share/cacert.pem
-
-RUN echo "curl.cainfo = /usr/local/share/cacert.pem" >> /usr/local/etc/php/conf.d/curl.ini
-
 # Устанавливаем зависимости для Laravel
 RUN apt-get update && apt-get install -y \
     libpq-dev \
