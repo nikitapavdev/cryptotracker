@@ -32,9 +32,10 @@ The API follows RESTful conventions and is organized into several core modules: 
 
 ### 📄 File Management
 - `GET /api/files` – List all your uploaded files
+- `GET /api/files/{id}` – Get information about a file
 - `POST /api/files` – Upload a new file
-- `DELETE /api/files/{id}` – Delete a file
 - `PATCH /api/files/{id}` – Update the information about a file
+- `DELETE /api/files/{id}` – Delete a file
 
 ### 🤝 Storage interaction
 - `GET /api/files/upload-url` – get a link to Storage for uploading a file
