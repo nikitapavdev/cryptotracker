@@ -20,24 +20,27 @@ jobs:
           extensions: mbstring, bcmath, sqlite, pdo_sqlite
           tools: composer
 
-      - name: Backend folder
-        run: cd backend
       - name: Install dependencies
         run: composer install --no-progress --prefer-dist
+        working-directory: backend
 
       - name: Set up Laravel .env
         run: |
           cp .env.example .env
           php artisan key:generate
+        working-directory: backend
 
       - name: Set up Laravel config for testing
         run: |
           echo "DB_CONNECTION=sqlite" >> .env
           echo "DB_DATABASE=:memory:" >> .env
+        working-directory: backend
 
       - name: Run migrations
         run: php artisan migrate
+        working-directory: backend
 
       - name: Run tests
         run: php artisan test
+        working-directory: backend
 
