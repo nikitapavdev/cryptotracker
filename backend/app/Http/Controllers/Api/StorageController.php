@@ -53,7 +53,7 @@ class StorageController extends Controller
         ], 200);
     }
 
-    public function download(Request $request, $id, $s3_key){
+    public function getDownloadUrl(Request $request, $id, $s3_key){
         $s3_key = $id.'/'.$s3_key;
 
         $client = $this->getClient();

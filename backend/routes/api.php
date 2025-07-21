@@ -17,8 +17,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 // Files upload and download
-Route::get('/files/download-url/{id}/{s3_key}', [StorageController::class, 'download']);
-Route::post('/files/upload-url', [StorageController::class, 'getUploadUrl']);
+Route::get('/files/download-url/{id}/{s3_key}', [StorageController::class, 'GetDownloadUrl']);
+Route::get('/files/upload-url', [StorageController::class, 'getUploadUrl']);
 
 // Resource paths
 Route::apiResource('files', FileController::class);
