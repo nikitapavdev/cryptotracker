@@ -20,6 +20,8 @@ jobs:
           extensions: mbstring, bcmath, sqlite, pdo_sqlite
           tools: composer
 
+      - name: Backend folder
+        run: cd backend
       - name: Install dependencies
         run: composer install --no-progress --prefer-dist
 
