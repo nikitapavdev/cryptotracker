@@ -1,9 +1,10 @@
 name: Deploy to GCP VM
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Laravel Tests"] 
+    types:
+      - completed
 
 jobs:
   deploy:

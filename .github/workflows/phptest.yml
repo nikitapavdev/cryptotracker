@@ -1,4 +1,4 @@
-name: Run Laravel Tests (SQLite In-Memory)
+name: Laravel Tests
 
 on:
   push:
