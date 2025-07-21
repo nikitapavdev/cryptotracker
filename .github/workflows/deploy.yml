@@ -44,7 +44,6 @@ jobs:
         working-directory: backend
         
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Deploy over SSH
     runs-on: ubuntu-latest
 
