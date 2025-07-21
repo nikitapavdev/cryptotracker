@@ -18,3 +18,5 @@ is a web application for secure document storage, management, and sharing with a
     CI/CD: GitHub Actions
 
     Cloud Hosting: AWS (EC2 / S3) or equivalent provider
+
+API documentation: https://documenter.getpostman.com/view/46791452/2sB34kFeyK
