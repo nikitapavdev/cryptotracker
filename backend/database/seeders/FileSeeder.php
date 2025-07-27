@@ -15,12 +15,12 @@ class FileSeeder extends Seeder
     public function run(): void
     {
         // Creating 10 files
-        for($i = 0; $i < 50; $i++){
+        /*for($i = 0; $i < 50; $i++){
             File::factory()
                 ->count(2)
                 ->for(User::inRandomOrder()->first())
                 ->create();
-        }
+    }*/
 
     }
 }
