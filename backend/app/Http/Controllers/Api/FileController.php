@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\FileResource;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendToFileGuard;
 use Illuminate\Http\Request;
 use App\Models\File;
 use Aws\S3\S3Client;
@@ -62,6 +64,9 @@ class FileController extends Controller
                 'user_id' => Auth()->id(),
                 'is_public' => false
             ]);
+
+            SendToFileGuard::dispatch($validated['s3_key']);           
+
             return response()->json([
                 'message' => "File created successfuly"
             ], 201);
@@ -69,8 +74,6 @@ class FileController extends Controller
         return response()->json([
             "message" => "File already exists"
         ], 409);
-
-        
 
     }
 
