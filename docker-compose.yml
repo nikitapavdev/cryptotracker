@@ -33,6 +33,20 @@ services:
       - app-network
     volumes:
       - ./backend:/var/www
+      
+  queue-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: php artisan queue:work --sleep=3 --tries=3 --timeout=90
+    depends_on:
+      - redis
+      - backend
+    volumes:
+      - ./backend:/var/www
+    networks:
+      - app-network
+
 
   fileguard:
     build:

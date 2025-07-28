@@ -22,7 +22,7 @@ class SendToFileGuard implements ShouldQueue
      */
     public function handle(): void
     {
-        Http::post('http://fileguard:8000/secur', [
+        Http::post('http://fileguard:8000/secure', [
             'path' => $this->path,
             'callback_url' => route('fileGuard.callback')     
         ]);
