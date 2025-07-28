@@ -106,7 +106,7 @@ class FileController extends Controller
 
     public function fileGuardCallBack(){
         return response()->json([
-            'message' => 'yes';
+            'message' => 'yes'
         ]);
     }
 }
