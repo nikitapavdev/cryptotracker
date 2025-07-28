@@ -22,3 +22,7 @@ Route::get('/files/upload-url', [StorageController::class, 'getUploadUrl']);
 
 // Resource paths
 Route::apiResource('files', FileController::class);
+
+
+// FileGuard
+Route::post('files/callback', [FileController::class, 'fileGuardCallBack'])->name('fileGuard.callback');

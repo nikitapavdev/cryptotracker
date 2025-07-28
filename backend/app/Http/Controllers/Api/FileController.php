@@ -103,4 +103,10 @@ class FileController extends Controller
             'message' => 'the file was successfuly deleted'
         ]);
     }
+
+    public function fileGuardCallBack(){
+        return response()->json([
+            'message' => 'yes';
+        ]);
+    }
 }
