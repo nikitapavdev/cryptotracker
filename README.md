@@ -3,21 +3,19 @@ is a web application for secure document storage, management, and sharing with a
 
 ## Technology Stack
 
-    Frontend: React, Tailwind CSS
-
-    Backend: Laravel (PHP), Express.js (Node.js), FastAPI (Python)
+    Backend (API): Laravel (PHP), Express.js (Node.js), FastAPI (Python)
 
     Database: PostgreSQL
 
     Caching: Redis
 
-    Object Storage: Amazon S3 (or MinIO for local development)
+    Object Storage: Amazon S3 (MinIO for local development)
 
     Containerization: Docker, Docker Compose
 
     CI/CD: GitHub Actions
 
-    Cloud Hosting: AWS (EC2 / S3) or equivalent provider
+    Microservice (fileguard) FastAPI
 
 ## 📡 API Overview
 
